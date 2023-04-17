@@ -20,27 +20,14 @@ html, body {
     min-width: 1200px;
 }
 
-.test{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: darkseagreen;
-}
-
 .sprite{ 
     background: url("./img/duck-hunt-sprite2.png");
 	width: 260px;
 	height: 320px;
 }
-
-.image1 {
-  background-repeat: repeat-x;
-  height: 240px;
-  width: 255px;
-  background-position: 260px -5px;
-}
   
   .scoreBoard {  
+    background-color: aqua;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
@@ -53,14 +40,20 @@ html, body {
     bottom: 0;
     width: 100%;
     position: fixed;
-    background: url("./img/duck-hunt-grass-back.png") bottom bottom no-repeat;
-    background-size: cover;
   }
   
-  .hits { grid-area: hits; }
+  .hits { 
+    background-color: #353535;
+    grid-area: hits;
+     }
   
-  .shots { grid-area: shots; }
+  .shots {
+    background-color: #353535;
+    grid-area: shots; }
   
-  .score { grid-area: score; }
+  .score { 
+    grid-area: score; 
+    background-color: #353535;
+}
   
  
