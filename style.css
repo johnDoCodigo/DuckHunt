@@ -1,3 +1,5 @@
+
+
 .container {  display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1.6fr 0.4fr;
@@ -7,16 +9,28 @@
       "game"
       "scoreBoard";
   }
-  .game { grid-area: game; 
-    min-height: 600px;
+  .game { grid-area: game;
+    min-width: 1200px;
 }
 
-.spriteBackground{
-    background-image: url("./img/duck-hunt-sprite.png");
-    position: 300px 705px;
-    height: 240px; 
-    width: 255px;
+.test{
+ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: darkseagreen;
+}
 
+.sprite{ 
+  background-image: url("./img/duck-hunt-sprite.png");
+  
+}
+
+.image1 {
+  background-repeat: repeat-x;
+  height: 240px;
+  width: 255px;
+  background-position: 260px -5px;
 }
 
 
