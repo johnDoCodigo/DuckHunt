@@ -6,7 +6,19 @@ html, body {
     overflow: hidden;
   }
 
-.container {  display: grid;
+  @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap");
+
+
+  .background{
+  background: url("./img/duck-hunt-grass-back.png") no-repeat;
+  background-position: bottom;
+  background-size: contain;
+  bottom: 0;
+  position: fixed;
+}
+
+  .container {
+    display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1.6fr 0.4fr;
     gap: 0px 0px;
@@ -17,43 +29,62 @@ html, body {
   }
 
   .game { grid-area: game;
-    min-width: 1200px;
-}
-
-.sprite{ 
-    background: url("./img/duck-hunt-sprite2.png");
-	width: 260px;
-	height: 320px;
-}
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  min-height: 600px;}
   
-  .scoreBoard {  
-    background-color: aqua;
+  .scoreBoard {
+    background-color: #d7d7d7;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
-    gap: 0px 0px;
+    gap: 0px 10px;
     grid-auto-flow: row;
     grid-template-areas:
       "shots hits score";
     grid-area: scoreBoard;
-    min-height: 200px;
-    bottom: 0;
+    justify-items: center;
     width: 100%;
+    bottom: 0;
     position: fixed;
+    justify-content: space-between;
   }
+
+ 
   
-  .hits { 
-    background-color: #353535;
+  .hits {
     grid-area: hits;
+    position: relative;
+    display: inline-block; 
      }
   
   .shots {
-    background-color: #353535;
-    grid-area: shots; }
+    grid-area: shots;
+    position: relative;
+    display: inline-block; }
   
   .score { 
-    grid-area: score; 
-    background-color: #353535;
+    grid-area: score;
+    position: relative;
+    display: inline-block; 
+}
+
+.score-points{
+  margin-top: 0px;
+  color:#2d91c2;
+}
+
+.scoreBoard > div{
+  font-family: "Raleway", sans-serif, sans-serif;
+  font-weight: 400;
+  display: inline-block;
+  justify-items: center;
+  margin: 10px;
+  padding: 0 20px;
+  border-radius: 10px;
+  background-color: #4a4a4a;
+  color:#d7d7d7;
 }
   
  
