@@ -1,90 +1,55 @@
-/* esta parte tem html, body, ao retirar o html nao fica a página toda preenchida*/
 html, body {
     width: 100%; height: 100%;
     margin: 0; padding: 0;
     background: linear-gradient(to bottom,#2d91c2 0%,#1e528e 100%);
     overflow: hidden;
+    z-index: -1;
   }
-
-  @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap");
-
-
+    
   .background{
-  background: url("./img/duck-hunt-grass-back.png") no-repeat;
-  background-position: bottom;
-  background-size: contain;
-  bottom: 0;
-  position: fixed;
-}
-
-  .container {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1.6fr 0.4fr;
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      "game"
-      "scoreBoard";
+    background-position: bottom;
+    background-size: cover;
+    bottom: 0;
   }
-
-  .game { grid-area: game;
+  
+  .container{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .game {
     display: flex;
     justify-content: center;
     align-items: center;
-  min-height: 600px;}
+    min-height: 600px;
+    background-color: #dd7b7b;
+
+  }
   
-  .scoreBoard {
+  .scoreBoard > div {
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    padding: 0 20px;
+    border-radius: 10px;
     background-color: #d7d7d7;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
-    gap: 0px 10px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      "shots hits score";
-    grid-area: scoreBoard;
-    justify-items: center;
-    width: 100%;
-    bottom: 0;
-    position: fixed;
-    justify-content: space-between;
+    color: #084b6c;
   }
 
- 
+  .scoreBoard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #d7d7d7;
+    padding: 10px;
+    background-image: url("./img/duck-hunt-grass-back.png");
+    z-index: 0;
+  }
   
-  .hits {
-    grid-area: hits;
-    position: relative;
-    display: inline-block; 
-     }
-  
-  .shots {
-    grid-area: shots;
-    position: relative;
-    display: inline-block; }
-  
-  .score { 
-    grid-area: score;
-    position: relative;
-    display: inline-block; 
-}
-
-.score-points{
-  margin-top: 0px;
-  color:#2d91c2;
-}
-
-.scoreBoard > div{
-  font-family: "Raleway", sans-serif, sans-serif;
-  font-weight: 400;
-  display: inline-block;
-  justify-items: center;
-  margin: 10px;
-  padding: 0 20px;
-  border-radius: 10px;
-  background-color: #4a4a4a;
-  color:#d7d7d7;
-}
-  
- 
+  .score-points {
+    margin-top: 0px;
+    font-family: "Raleway", sans-serif;
+    font-weight: 400;
+  }
