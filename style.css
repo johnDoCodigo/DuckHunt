@@ -7,6 +7,9 @@ html, body {
   }
     
   .background{
+    width: 100%;
+    height: 100%;
+    background-image: url("./img/duck-hunt-grass-back.png");
     background-position: bottom;
     background-size: cover;
     bottom: 0;
@@ -44,7 +47,7 @@ html, body {
     align-items: center;
     color: #d7d7d7;
     padding: 10px;
-    background-image: url("./img/duck-hunt-grass-back.png");
+    
     z-index: 0;
   }
   
