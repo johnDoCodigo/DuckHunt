@@ -1,3 +1,4 @@
+
 html, body {
     width: 100%; height: 100%;
     margin: 0; padding: 0;
@@ -18,6 +19,7 @@ html, body {
   .container{
     display: flex;
     flex-direction: column;
+    align-items: center;
   }
   
   .game {
@@ -26,7 +28,6 @@ html, body {
     align-items: center;
     min-height: 600px;
     background-color: #dd7b7b;
-
   }
   
   .scoreBoard > div {
@@ -47,7 +48,6 @@ html, body {
     align-items: center;
     color: #d7d7d7;
     padding: 10px;
-    
     z-index: 0;
   }
   
