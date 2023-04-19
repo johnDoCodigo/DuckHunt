@@ -143,16 +143,60 @@ z-index: 4;
   color: #084b6c;
 }
 
-#kimpossible {
-  height: 256px;
-  width: 256px;
-background: 
-url('https://miro.medium.com/v2/resize:fit:4800/format:webp/1*WhDjw8GiV5o0flBXM4LXEw.png') 0px 0px;
-}
-
-
 #duck{
   height: 70px;
   width: 70px;
-background: url('./img/duck-right.png');
+  background: url('./img/dead-duck.png') 70px 70px;
+  position: absolute;
+  }
+
+#duck-right{
+height: 70px;
+width: 70px;
+background: url('./img/duck-right.png') 70px 70px;
+position: absolute;
+animation: moveRightTop 2s;
+animation-fill-mode: forwards;
 }
+
+
+#duck-left{
+  height: 70px;
+  width: 70px;
+  background: url('./img/duck-right.png') 70px 70px;
+  transform: scaleX(-1);
+  position: absolute;
+  animation: moveRightTopInvert 2s;
+  animation-fill-mode: forwards;
+  }
+
+
+#duck-right-top{
+  height: 70px;
+  width: 70px;
+  background: url('./img/duck-right-up.png') 70px 70px;
+  position: absolute;
+  }
+
+
+  @keyframes moveRightTop {
+    0% {
+      bottom: 20%;
+      left: 0;
+    }
+    100% {
+      bottom: 85%;
+      left: 95%;
+    }
+  }
+
+  @keyframes moveRightTopInvert {
+    0% {
+      bottom: 85%;
+      left: 95%;
+    }
+    100% {
+      bottom: 20%;
+      left: 0%; 
+    }
+  }

@@ -1,38 +1,90 @@
-var tID; //we will use this variable to clear the setInterval()
-function animateScript() {
-var    position = 256; //start position for the image slicer
-const  interval = 100; //100 ms of interval for the setInterval()
-tID = setInterval ( () => {
-document.getElementById("kimpossible").style.backgroundPosition = 
-`-${position}px 0px`; 
-//we use the ES6 template literal to insert the variable "position"
-if (position < 1536)
-{ position = position + 256;}
-//we increment the position by 256 each time
-else
-{ position = 256; }
-//reset the position to 256px, once position exceeds 1536px
-}
-, interval ); //end of setInterval
-} //end of animateScript()
+window.onload = () => {
+  var tID;
+  var tID2;
+  let duck;
+  const gameContainer = document.getElementById("game");
+
+  function createDuck(x, y) {
+    duck = document.createElement("div");
+    duck.id = "duck";
+
+    duck.style.bottom = `${x}%`;
+    duck.style.left = `${y}%`;
+    gameContainer.append(duck);
+  }
 
 
-var tID2; //we will use this variable to clear the setInterval()
-function animateScript2() {
-var    position = 70; //start position for the image slicer
-const  interval = 100; //100 ms of interval for the setInterval()
-tID2 = setInterval ( () => {
-document.getElementById("duck").style.backgroundPosition = 
-`-${position}px 0px`; 
-//we use the ES6 template literal to insert the variable "position"
-if (position < 210)
-{ position = position + 70;}
-//we increment the position by 256 each time
-else
-{ position = 70; }
-//reset the position to 256px, once position exceeds 1536px
-}
-, interval ); //end of setInterval
-}
+  function animateDuckRight() {
+    duck.id = "duck-right";
+    var position = 70;
+    const interval = 100;
+    tID = setInterval(() => {
+      document.getElementById(
+        "duck-right"
+      ).style.backgroundPosition = `-${position}px 0px`;
+
+      if (position < 210) {
+        position = position + 70;
+      } else {
+        position = 70;
+      }
+    }, interval);
+
+    duck.addEventListener("animationend", function () {
+        animateDuckLeft();
+        //changeAnimation(duck.id);
+      });
+  }
+
+  function animateDuckLeft() {
+    duck.id = "duck-left";
+    var position = 70;
+    const interval = 100;
+    tID = setInterval(() => {
+      document.getElementById(
+        "duck-left"
+      ).style.backgroundPosition = `-${position}px 0px`;
+
+      if (position < 210) {
+        position = position + 70;
+      } else {
+        position = 70;
+      }
+    }, interval);
+
+    duck.addEventListener("animationend", function () {
+        animateDuckRight();
+        //changeAnimation(duck.id);
+      });
+  }
+
+  function changeAnimation(test){
+    document.getElementById(
+        `${test}`
+      ).style.animation = "moveRightTopInvert 2s";
+  }
+
+  function animateDuckRightTop() {
+    duck.id = "duck-right-top";
+    var position = 70;
+    const interval = 100;
+    tID2 = setInterval(() => {
+      document.getElementById(
+        `${duckRecieve}`
+      ).style.backgroundPosition = `-${position}px 0px`;
+
+      if (position < 210) {
+        position = position + 70;
+      } else {
+        position = 70;
+      }
+    }, interval);
+  }
 
 
+
+
+  createDuck(35, 5);
+  animateDuckRight();
+
+};
