@@ -146,14 +146,16 @@ z-index: 4;
 #duck{
   height: 70px;
   width: 70px;
-  background: url('./img/dead-duck.png') 70px 70px;
+  background: url('./img/dead-duck.png');
+  background-position: 70px 70px;
   position: absolute;
   }
 
 #duck-right{
 height: 70px;
 width: 70px;
-background: url('./img/duck-right.png') 70px 70px;
+background: url('./img/duck-right.png');
+background-position: 70px 70px;
 position: absolute;
 animation: moveRightTop 2s;
 animation-fill-mode: forwards;
@@ -163,7 +165,8 @@ animation-fill-mode: forwards;
 #duck-left{
   height: 70px;
   width: 70px;
-  background: url('./img/duck-right.png') 70px 70px;
+  background: url('./img/duck-right.png');
+  background-position: 70px 70px;
   transform: scaleX(-1);
   position: absolute;
   animation: moveRightTopInvert 2s;
@@ -174,7 +177,8 @@ animation-fill-mode: forwards;
 #duck-right-top{
   height: 70px;
   width: 70px;
-  background: url('./img/duck-right-up.png') 70px 70px;
+  background: url('./img/duck-right-up.png');
+  background-position: 70px 70px;  
   position: absolute;
   }
 

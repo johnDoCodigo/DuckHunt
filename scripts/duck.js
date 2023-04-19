@@ -13,15 +13,19 @@ window.onload = () => {
     gameContainer.append(duck);
   }
 
-
   function animateDuckRight() {
     duck.id = "duck-right";
     var position = 70;
     const interval = 100;
     tID = setInterval(() => {
-      document.getElementById(
-        "duck-right"
-      ).style.backgroundPosition = `-${position}px 0px`;
+      let element = document.getElementById("duck-right");
+      if (element) {
+        element.style.backgroundPosition = `-${position}px 0px`;
+      } else {
+        console.log("Error");
+      }
+
+      console.log(document);
 
       if (position < 210) {
         position = position + 70;
@@ -31,9 +35,9 @@ window.onload = () => {
     }, interval);
 
     duck.addEventListener("animationend", function () {
-        animateDuckLeft();
-        //changeAnimation(duck.id);
-      });
+      animateDuckLeft();
+      //changeAnimation(duck.id);
+    });
   }
 
   function animateDuckLeft() {
@@ -41,9 +45,10 @@ window.onload = () => {
     var position = 70;
     const interval = 100;
     tID = setInterval(() => {
-      document.getElementById(
-        "duck-left"
-      ).style.backgroundPosition = `-${position}px 0px`;
+      let element = document.getElementById("duck-left");
+      if (element) {
+        element.style.backgroundPosition = `-${position}px 0px`;
+      }
 
       if (position < 210) {
         position = position + 70;
@@ -53,15 +58,14 @@ window.onload = () => {
     }, interval);
 
     duck.addEventListener("animationend", function () {
-        animateDuckRight();
-        //changeAnimation(duck.id);
-      });
+      animateDuckRight();
+      //changeAnimation(duck.id);
+    });
   }
 
-  function changeAnimation(test){
-    document.getElementById(
-        `${test}`
-      ).style.animation = "moveRightTopInvert 2s";
+  function changeAnimation(test) {
+    document.getElementById(`${test}`).style.animation =
+      "moveRightTopInvert 2s";
   }
 
   function animateDuckRightTop() {
@@ -81,10 +85,6 @@ window.onload = () => {
     }, interval);
   }
 
-
-
-
   createDuck(35, 5);
   animateDuckRight();
-
 };
