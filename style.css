@@ -149,3 +149,10 @@ z-index: 4;
 background: 
 url('https://miro.medium.com/v2/resize:fit:4800/format:webp/1*WhDjw8GiV5o0flBXM4LXEw.png') 0px 0px;
 }
+
+
+#duck{
+  height: 70px;
+  width: 70px;
+background: url('./img/duck-right.png');
+}
