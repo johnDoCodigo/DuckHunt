@@ -149,7 +149,7 @@ body {
   background: url("./img/duck-right.png");
   background-position: 70px 70px;
   position: absolute;
-  animation: moveRightHorizontal 4s;
+  animation: moveRightHorizontal 8s;
   animation-fill-mode: forwards;
 }
 
@@ -160,7 +160,7 @@ body {
   background-position: 70px 70px;
   transform: scaleX(-1);
   position: absolute;
-  animation: moveLeftHorizontal 4s;
+  animation: moveLeftHorizontal 8s;
   animation-fill-mode: forwards;
 }
 
@@ -170,7 +170,7 @@ body {
   background: url("./img/duck-right-up.png");
   background-position: 70px 70px;
   position: absolute;
-  animation: moveRightDiagonal 4s;
+  animation: moveRightDiagonal 6s;
   animation-fill-mode: forwards;
 }
 
@@ -181,7 +181,7 @@ body {
   background-position: 70px 70px;
   position: absolute;
   transform: scaleX(-1);
-  animation: moveLeftDiagonal 4s;
+  animation: moveLeftDiagonal 6s;
   animation-fill-mode: forwards;
 }
 
