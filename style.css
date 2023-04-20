@@ -182,6 +182,22 @@ animation-fill-mode: forwards;
   position: absolute;
   }
 
+  .dog{
+    height: 100px;
+    width: 100px;
+    background: url('./img/dogs-walking.png');
+    background-position: 100px 100px;
+    position: absolute;
+  }
+/*
+  .dogMovement{
+    height: 100px;
+    width: 100px;
+    background: url('./img/dogs-walking.png');
+    background-position: 100px 100px;
+    position: absolute;
+  }*/
+
 
   @keyframes moveRightTop {
     0% {
