@@ -56,7 +56,6 @@ window.onload = () => {
     }, interval);
 
     duck.addEventListener("animationend", function () {
-        console.log("enter in listener");
         duck.classList.toggle("duck-left");
         duck.removeEventListener("animationend", arguments.callee);
         animateDuckRight();
