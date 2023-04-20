@@ -229,14 +229,15 @@ animation-fill-mode: forwards;
         left: 0%;
       }
       90%{
-        opacity:1;
+        bottom: 24%;
+        left: 34%;
       }
       95%{
-        opacity:0.7;
+        bottom: 24%;
+        left: 44%;
       }
       100%{
-        bottom: 25%; 
-        left: 30%;
-        opacity: 0;
+        bottom: 24%; 
+        left: 54%;
       }
     }
