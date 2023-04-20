@@ -21,7 +21,7 @@
         dogElement.style.backgroundPosition = `-${position}px 0px`;
       }
 
-      if (position < 700) {
+      if (position < 800) {
         position = position + 100;
       } else {
         dog.remove();
