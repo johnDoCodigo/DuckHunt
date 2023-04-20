@@ -143,7 +143,7 @@ z-index: 4;
   color: #084b6c;
 }
 
-#duck{
+.duck{
   height: 70px;
   width: 70px;
   background: url('./img/dead-duck.png');
@@ -151,30 +151,30 @@ z-index: 4;
   position: absolute;
   }
 
-#duck-right{
+.duck-right{
 height: 70px;
 width: 70px;
 background: url('./img/duck-right.png');
 background-position: 70px 70px;
 position: absolute;
-animation: moveRightTop 2s;
+animation: moveRightTop 4s;
 animation-fill-mode: forwards;
 }
 
 
-#duck-left{
+.duck-left{
   height: 70px;
   width: 70px;
   background: url('./img/duck-right.png');
   background-position: 70px 70px;
   transform: scaleX(-1);
   position: absolute;
-  animation: moveRightTopInvert 2s;
+  animation: moveRightTopInvert 4s;
   animation-fill-mode: forwards;
   }
 
 
-#duck-right-top{
+.duck-right-top{
   height: 70px;
   width: 70px;
   background: url('./img/duck-right-up.png');
