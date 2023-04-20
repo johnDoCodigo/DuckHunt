@@ -62,19 +62,15 @@ window.onload = () => {
     });
   }
 
-  function changeAnimation(test) {
-    document.getElementById(`${test}`).style.animation =
-      "moveRightTopInvert 2s";
-  }
-
-  function animateDuckRightTop() {
-    duck.id = "duck-right-top";
+  function animateDuckRightDiagonal() {
+    duck.classList.toggle("duck-right-top");
     var position = 70;
     const interval = 100;
-    tID2 = setInterval(() => {
-      document.getElementById(
-        `${duckRecieve}`
-      ).style.backgroundPosition = `-${position}px 0px`;
+    tID = setInterval(() => {
+      let element = document.getElementById("duck");
+      if (element) {
+        element.style.backgroundPosition = `-${position}px 0px`;
+      }
 
       if (position < 210) {
         position = position + 70;
@@ -82,8 +78,39 @@ window.onload = () => {
         position = 70;
       }
     }, interval);
+
+    duck.addEventListener("animationend", function () {
+      duck.classList.toggle("duck-right-top");
+      duck.removeEventListener("animationend", arguments.callee);
+      animateDuckLeftDiagonal();
+    });
   }
 
+  function animateDuckLeftDiagonal() {
+    duck.classList.toggle("duck-left-top");
+    var position = 70;
+    const interval = 100;
+    tID = setInterval(() => {
+      let element = document.getElementById("duck");
+      if (element) {
+        element.style.backgroundPosition = `-${position}px 0px`;
+      }
+
+      if (position < 210) {
+        position = position + 70;
+      } else {
+        position = 70;
+      }
+    }, interval);
+
+    duck.addEventListener("animationend", function () {
+        duck.classList.toggle("duck-left-top");
+        duck.removeEventListener("animationend", arguments.callee);
+        animateDuckRightDiagonal();
+    });
+  }
+
+
   createDuck(35, 5);
-  animateDuckRight();
+  animateDuckRightDiagonal();
 };

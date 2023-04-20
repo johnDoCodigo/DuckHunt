@@ -1,13 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap");
 
-
-html, body {
-  width: 100%; height: 100%;
-  margin: 0; padding: 0;
-  background: linear-gradient(to bottom,#2d91c2 0%,#1e528e 100%);
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom, #2d91c2 0%, #1e528e 100%);
   overflow: hidden;
   z-index: -1;
-  cursor: url('./img/cursor.cur'), auto;
+  cursor: url("./img/cursor.cur"), auto;
 }
 
 .container {
@@ -58,7 +60,7 @@ html, body {
   left: 5%;
   top: 5%;
   width: 40px;
-	height: 40px;
+  height: 40px;
   z-index: 8;
 }
 
@@ -67,17 +69,16 @@ html, body {
   left: 7%;
   top: 5%;
   width: 40px;
-	height: 40px;
+  height: 40px;
   z-index: 8;
 }
-
 
 #bullet3 {
   position: absolute;
   left: 9%;
   top: 5%;
   width: 40px;
-	height: 40px;
+  height: 40px;
   z-index: 8;
 }
 
@@ -86,7 +87,7 @@ html, body {
   bottom: 5%;
   left: 8%;
   width: 40px;
-	height: 40px;
+  height: 40px;
   z-index: 8;
 }
 
@@ -95,7 +96,7 @@ html, body {
   bottom: 5%;
   left: 12%;
   width: 40px;
-	height: 40px;
+  height: 40px;
   z-index: 8;
 }
 
@@ -104,17 +105,15 @@ html, body {
   bottom: 5%;
   left: 16%;
   width: 40px;
-	height: 40px;
+  height: 40px;
   z-index: 8;
 }
 
-
-.bottom{
-position: absolute;
-bottom: 0%;
-width: 100%;
-z-index: 4;
-
+.bottom {
+  position: absolute;
+  bottom: 0%;
+  width: 100%;
+  z-index: 4;
 }
 
 .scoreBoard {
@@ -143,64 +142,98 @@ z-index: 4;
   color: #084b6c;
 }
 
-.duck{
+.duck {
   height: 70px;
   width: 70px;
-  background: url('./img/dead-duck.png');
+  background: url("./img/dead-duck.png");
   background-position: 70px 70px;
   position: absolute;
-  }
-
-.duck-right{
-height: 70px;
-width: 70px;
-background: url('./img/duck-right.png');
-background-position: 70px 70px;
-position: absolute;
-animation: moveRightTop 4s;
-animation-fill-mode: forwards;
 }
 
-
-.duck-left{
+.duck-right {
   height: 70px;
   width: 70px;
-  background: url('./img/duck-right.png');
+  background: url("./img/duck-right.png");
+  background-position: 70px 70px;
+  position: absolute;
+  animation: moveRightHorizontal 4s;
+  animation-fill-mode: forwards;
+}
+
+.duck-left {
+  height: 70px;
+  width: 70px;
+  background: url("./img/duck-right.png");
   background-position: 70px 70px;
   transform: scaleX(-1);
   position: absolute;
-  animation: moveRightTopInvert 4s;
+  animation: moveLeftHorizontal 4s;
   animation-fill-mode: forwards;
-  }
+}
 
-
-.duck-right-top{
+.duck-right-top {
   height: 70px;
   width: 70px;
-  background: url('./img/duck-right-up.png');
-  background-position: 70px 70px;  
+  background: url("./img/duck-right-up.png");
+  background-position: 70px 70px;
   position: absolute;
-  }
+  animation: moveRightDiagonal 4s;
+  animation-fill-mode: forwards;
+}
 
+.duck-left-top {
+  height: 70px;
+  width: 70px;
+  background: url("./img/duck-right-up.png");
+  background-position: 70px 70px;
+  position: absolute;
+  transform: scaleX(-1);
+  animation: moveLeftDiagonal 4s;
+  animation-fill-mode: forwards;
+}
 
-  @keyframes moveRightTop {
-    0% {
-      bottom: 20%;
-      left: 0;
-    }
-    100% {
-      bottom: 85%;
-      left: 95%;
-    }
-  }
+/* Ducks movements */
 
-  @keyframes moveRightTopInvert {
-    0% {
-      bottom: 85%;
-      left: 95%;
-    }
-    100% {
-      bottom: 20%;
-      left: 0%; 
-    }
+@keyframes moveRightHorizontal {
+  0% {
+    bottom: 30%;
+    left: 0;
   }
+  100% {
+    bottom: 30%;
+    left: 95%;
+  }
+}
+
+@keyframes moveLeftHorizontal {
+  0% {
+    bottom: 30%;
+    left: 95%;
+  }
+  100% {
+    bottom: 30%;
+    left: 0%;
+  }
+}
+
+@keyframes moveRightDiagonal {
+  0% {
+    bottom: 30%;
+    left: 0;
+  }
+  100% {
+    bottom: 95%;
+    left: 95%;
+  }
+}
+
+@keyframes moveLeftDiagonal {
+  0% {
+    bottom: 95%;
+    left: 95%;
+  }
+  100% {
+    bottom: 30%;
+    left: 0%;
+  }
+}
