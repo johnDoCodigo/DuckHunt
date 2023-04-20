@@ -14,17 +14,17 @@
   function animateDog() {
     dog.classList.toggle("dog");
     var position = 100;
-    const interval = 120;
+    const interval = 200;
     dogAppearID = setInterval(() => {
       let dogElement = document.getElementById("dog");
       if (dogElement) {
         dogElement.style.backgroundPosition = `-${position}px 0px`;
       }
 
-      if (position < 800) {
+      if (position < 700) {
         position = position + 100;
       } else {
-        position = 100;
+        dog.remove();
       }
     }, interval);
 
@@ -35,5 +35,5 @@
     });
   }
 
-  createDog(24, 5);
+  createDog(24, 2);
   animateDog();

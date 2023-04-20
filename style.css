@@ -186,9 +186,12 @@ animation-fill-mode: forwards;
     height: 100px;
     width: 100px;
     background: url('./img/dogs-walking.png');
-    background-position: 100px 100px;
     position: absolute;
+    animation: moveFowardDog 3000ms;
+    animation-fill-mode: forwards;
+    z-index: 4;
   }
+
 /*
   .dogMovement{
     height: 100px;
@@ -197,7 +200,6 @@ animation-fill-mode: forwards;
     background-position: 100px 100px;
     position: absolute;
   }*/
-
 
   @keyframes moveRightTop {
     0% {
@@ -220,3 +222,21 @@ animation-fill-mode: forwards;
       left: 0%; 
     }
   }
+
+    @keyframes moveFowardDog {
+      0%{
+        bottom: 24%;
+        left: 0%;
+      }
+      90%{
+        opacity:1;
+      }
+      95%{
+        opacity:0.7;
+      }
+      100%{
+        bottom: 25%; 
+        left: 30%;
+        opacity: 0;
+      }
+    }
