@@ -142,13 +142,6 @@ body {
   color: #084b6c;
 }
 
-.duck {
-  height: 70px;
-  width: 70px;
-  background: url("./img/dead-duck.png");
-  background-position: 70px 70px;
-  position: absolute;
-}
 
 .duck-right {
   height: 70px;
@@ -190,6 +183,14 @@ body {
   transform: scaleX(-1);
   animation: moveLeftDiagonal 4s;
   animation-fill-mode: forwards;
+}
+
+.duck-dead {
+  height: 70px;
+  width: 70px;
+  background: url("./img/dead-duck.png");
+  background-position: 0px 0px;
+  position: absolute;
 }
 
 /* Ducks movements */

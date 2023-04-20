@@ -1,7 +1,9 @@
 window.onload = () => {
-  var tID;
-  var tID2;
+  let tID;
   let duck;
+  let position = 70;
+  const interval = 1000;
+  const rounds = 5;
   const gameContainer = document.getElementById("game");
 
   function createDuck(x, y) {
@@ -15,8 +17,6 @@ window.onload = () => {
 
   function animateDuckRight() {
     duck.classList.toggle("duck-right");
-    var position = 70;
-    const interval = 100;
     tID = setInterval(() => {
       let element = document.getElementById("duck");
       if (element) {
@@ -34,14 +34,11 @@ window.onload = () => {
       duck.classList.toggle("duck-right");
       duck.removeEventListener("animationend", arguments.callee);
       animateDuckLeft();
-      //changeAnimation(duck.id);
     });
   }
 
   function animateDuckLeft() {
     duck.classList.toggle("duck-left");
-    var position = 70;
-    const interval = 100;
     tID = setInterval(() => {
       let element = document.getElementById("duck");
       if (element) {
@@ -56,16 +53,14 @@ window.onload = () => {
     }, interval);
 
     duck.addEventListener("animationend", function () {
-        duck.classList.toggle("duck-left");
-        duck.removeEventListener("animationend", arguments.callee);
-        animateDuckRight();
+      duck.classList.toggle("duck-left");
+      duck.removeEventListener("animationend", arguments.callee);
+      animateDuckRight();
     });
   }
 
   function animateDuckRightDiagonal() {
     duck.classList.toggle("duck-right-top");
-    var position = 70;
-    const interval = 100;
     tID = setInterval(() => {
       let element = document.getElementById("duck");
       if (element) {
@@ -88,8 +83,6 @@ window.onload = () => {
 
   function animateDuckLeftDiagonal() {
     duck.classList.toggle("duck-left-top");
-    var position = 70;
-    const interval = 100;
     tID = setInterval(() => {
       let element = document.getElementById("duck");
       if (element) {
@@ -104,13 +97,55 @@ window.onload = () => {
     }, interval);
 
     duck.addEventListener("animationend", function () {
-        duck.classList.toggle("duck-left-top");
-        duck.removeEventListener("animationend", arguments.callee);
-        animateDuckRightDiagonal();
+      duck.classList.toggle("duck-left-top");
+      duck.removeEventListener("animationend", arguments.callee);
+      animateDuckRightDiagonal();
     });
   }
+  const animateDeadDuck = () => {
+    duck.className = "";
+    duck.classList.toggle("duck-dead");
+    /* duck.style.backgroundPosition = `0px 0px`; */
+    setTimeout(() => {
+      tID = setInterval(() => {
+        let element = document.getElementById("duck");
+        if (element) {
+          element.style.backgroundPosition = `-${position}px 0px`;
+        }
+        if (position < 350) {
+          position = position + 70;
+        } else {
+          position = 70;
+        }
+      }, interval);
+    }, 2000);
+  };
 
+  //kill duck
 
   createDuck(35, 5);
-  animateDuckRightDiagonal();
+  animateDuckRight();
+
+  duck.addEventListener("click", function () {
+    animateDeadDuck();
+  });
+
+  /*   duck.addEventListener('click', (event) => {
+    event.target.classList.add("shot");
+ 
+  
+    setTimeout(() => {
+      duck.parentNode.removeChild(duck);
+     
+      addScore();
+      countDeadDucks();
+      countShots();
+ 
+
+      checkWinner();
+ 
+    
+
+    }, 500);
+  }); */
 };
