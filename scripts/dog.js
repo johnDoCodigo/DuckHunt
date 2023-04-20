@@ -11,7 +11,7 @@
     gameContainer.append(dog);
   }
 
-  function animateDog() {
+  function animateDogBeggin() {
     dog.classList.toggle("dog");
     var position = 100;
     const interval = 200;
@@ -31,9 +31,16 @@
     dog.addEventListener("animationend", function () {
       dog.classList.toggle("dog");
       dog.removeEventListener("animationend", arguments.callee);
-      animateDog();
+      animateDogBeggin();
     });
   }
 
+  /*function animateDogMissingShot(){
+    dog.classList.toggle("dog");
+    var position = 100;
+
+  }
+  */
+
   createDog(24, 2);
-  animateDog();
+  animateDogBeggin();
