@@ -1,4 +1,5 @@
-Duck Hunt the Game
+#Duck Hunt the Game
+<img src= "https://media.discordapp.net/attachments/725516879543795823/726966055527907451/unknown.png?width=445&height=249"></img>
 Welcome to Duck Hunt, a classic shooting game brought to life in your web browser!
 
 Description
