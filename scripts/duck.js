@@ -38,13 +38,11 @@ window.onload = () => {
     let element = document.getElementById(duckId);
   
     const directions = ["right", "left", "right-top", "left-top"];
-    const speeds = [200, 300, 400, 500];
     const randomDirection = directions[Math.floor(Math.random() * directions.length)];
-    const randomSpeed = speeds[Math.floor(Math.random() * speeds.length)];
   
     element.classList.toggle("duck-" + randomDirection);
   
-    let position = 70;
+
     tID = setInterval(() => {
       if (element) {
         element.style.backgroundPosition = `-${position}px 0px`;
@@ -54,16 +52,26 @@ window.onload = () => {
         position = position + 70;
       } else {
         position = 70;
-        const newRandomDirection = directions[Math.floor(Math.random() * directions.length)];
-        element.classList.toggle("duck-" + randomDirection);
-        element.classList.toggle("duck-" + newRandomDirection);
+
       }
-    }, randomSpeed);
+    }, interval);
+
+
+    element.addEventListener("animationend", function handleAnimationEnd() {
+      const newRandomDirection = directions[Math.floor(Math.random() * directions.length)];
+      element.classList.toggle("duck-" + randomDirection);
+      element.classList.toggle("duck-" + newRandomDirection);
+      console.log(randomDirection);
+      console.log(newRandomDirection);
+      element.removeEventListener("animationend", handleAnimationEnd);
+      element.addEventListener("animationend", handleAnimationEnd);
+    });
   
-    element.addEventListener("click", function () {
+  
+/*     element.addEventListener("click", function () {
       clearInterval(tID);
       element.classList.toggle("dead-duck");
-    });
+    }); */
   }
   
 
@@ -162,10 +170,44 @@ window.onload = () => {
     });
   } */
 
-  function switchDirections() {
-    if (animateDuckRightDiagonal) {
+  const switchDirections = (duck) => {
+
+  const keyframes = window.CSS.keyframes;
+  const animationName = "moveRightHorizontal";
+
+  const existingKeyframesRule = Array.from(keyframes).find(rule => rule.name === animationName);
+
+
+    let positionX = duck.positionX;
+    let positionY = duck.positionY;
+
+    const duckId = duck.idName;
+    let element = document.getElementById(duckId);
+
+    let newPositionX = getRandomInt(25,100);
+    let newPositionY = getRandomInt(25,100);
+    
+    if (newPositionX > positionX && newPositionY != positionY) {
+      element.classList.toggle("duck-right-top");
+      existingKeyframesRule.appendRule("100% { bottom: 30%; left: 90%; }");
     }
-  }
+
+    else if (newPositionX < positionX && newPositionY != positionY){
+      element.classList.toggle("duck-left-top");
+    }
+    else if(newPositionX = positionX && newPositionY > positionY){
+      element.classList.toggle("right");
+    }
+
+    else if(newPositionX = positionX && newPositionY < positionY){
+      element.classList.toggle("left");
+    }
+    else {
+      newPositionX = getRandomInt(25,100);
+      newPositionY = getRandomInt(25,100);
+    }
+
+  };
 
   const animateDeadDuck = (duck, positionX, positionY) => {
     clearInterval(tID);
@@ -179,8 +221,11 @@ window.onload = () => {
 
     //tests of create and render ducks
     let duck1 = createDuck(35, 5);
+    let duck2 = createDuck(20,20);
+    generateDuck(duck2)
     generateDuck(duck1);
-    animateDuckRandom(duck1);
+    animateDuckRandom(duck1)
+    animateDuckRandom(duck2);
 
 
   //kill duck
@@ -195,10 +240,20 @@ window.onload = () => {
   
       // Get the position of the duck
       console.log(`You clicked the duck at position (${x}, ${y})`);
+
+      duck.classList.toggle("dead-duck");
+
   
       animateDeadDuck(duck, x, y);
     });
   });
+
+
+  // utilities functions
+
+  function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
 
 
 };

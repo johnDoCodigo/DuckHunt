@@ -149,7 +149,7 @@ body {
   background: url("./img/duck-right.png");
   background-position: 70px 70px;
   position: absolute;
-  animation: moveRightHorizontal 8s;
+  animation: moveRightHorizontal 2s;
   animation-fill-mode: forwards;
 }
 
@@ -160,7 +160,7 @@ body {
   background-position: 70px 70px;
   transform: scaleX(-1);
   position: absolute;
-  animation: moveLeftHorizontal 8s;
+  animation: moveLeftHorizontal 2s;
   animation-fill-mode: forwards;
 }
 
@@ -170,7 +170,7 @@ body {
   background: url("./img/duck-right-up.png");
   background-position: 70px 70px;
   position: absolute;
-  animation: moveRightDiagonal 6s;
+  animation: moveRightDiagonal 2s;
   animation-fill-mode: forwards;
 }
 
@@ -181,7 +181,7 @@ body {
   background-position: 70px 70px;
   position: absolute;
   transform: scaleX(-1);
-  animation: moveLeftDiagonal 6s;
+  animation: moveLeftDiagonal 2s;
   animation-fill-mode: forwards;
 }
 
@@ -191,15 +191,6 @@ body {
   background: url("./img/dead-duck.png");
   background-position: 0px 0px;
   position: absolute;
-}
-
-#animated-div {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50px;
-  height: 50px;
-  background-color: red;
 }
 
 /* Ducks movements */
