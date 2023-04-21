@@ -113,7 +113,7 @@ html, body {
 position: absolute;
 bottom: 0%;
 width: 100%;
-z-index: 4;
+z-index: 2;
 
 }
 
@@ -189,7 +189,17 @@ animation-fill-mode: forwards;
     position: absolute;
     animation: moveFowardDog 3000ms;
     animation-fill-mode: forwards;
-    z-index: 4;
+    z-index: 5;
+  }
+
+  .dogLaugh{
+    height: 100px;
+    width: 100px;
+    background: url('./img/dogs-dead-ducks.png');
+    position: absolute;
+    animation: dogLaughing 3000ms;
+    animation-fill-mode: both;
+    z-index: 2;
   }
 
 /*
@@ -225,7 +235,7 @@ animation-fill-mode: forwards;
 
     @keyframes moveFowardDog {
       0%{
-        bottom: 24%;
+        bottom: 13%;
         left: 0%;
       }
       90%{
@@ -241,3 +251,17 @@ animation-fill-mode: forwards;
         left: 64%;
       }
     }
+
+      @keyframes dogLaughing{  
+        0%{
+          top: 75%;
+        }
+        50%{
+          top: 60%;
+        }
+       
+        100%{
+          top: 75%;
+        }
+      }
+      

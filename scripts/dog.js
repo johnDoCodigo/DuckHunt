@@ -35,12 +35,21 @@
     });
   }
 
-  /*function animateDogMissingShot(){
-    dog.classList.toggle("dog");
-    var position = 100;
+  function createDogLaugh(x,y) {
+    let dog2 = document.createElement("div");
+    dog2.className = "dogLaugh";
+    gameContainer.append(dog2);
+    const interval = 800;
 
-  }
-  */
+    dog2.style.bottom = `${x}%`;
+    dog2.style.left = `${y}%`;
+    
+    function removeDog(){
+      dog2.remove();
+    }
+    dog2.addEventListener("animationend", removeDog);
+   }
 
   createDog(24, 2);
   animateDogBeggin();
+  let dog2 = createDogLaugh();
