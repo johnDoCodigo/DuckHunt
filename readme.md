@@ -1,6 +1,6 @@
 # Duck-Hunt the Game
 
-<img src= "https://media.discordapp.net/attachments/725516879543795823/726966055527907451/unknown.png?width=445&height=249"></img>
+<img src= "https://code-projects.org/wp-content/uploads/2018/07/Screenshot-duck-hunt.png"></img>
 
 
 Welcome to Duck Hunt, a classic shooting game brought to life! In order to develop this project we used: JavaScript, CSS and HTML.
