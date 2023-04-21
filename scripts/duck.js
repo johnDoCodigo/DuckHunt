@@ -33,7 +33,41 @@ window.onload = () => {
     return duckRender;
   };
 
-  function animateDuckRight(duck) {
+  function animateDuckRandom(duck) {
+    const duckId = duck.idName;
+    let element = document.getElementById(duckId);
+  
+    const directions = ["right", "left", "right-top", "left-top"];
+    const speeds = [200, 300, 400, 500];
+    const randomDirection = directions[Math.floor(Math.random() * directions.length)];
+    const randomSpeed = speeds[Math.floor(Math.random() * speeds.length)];
+  
+    element.classList.toggle("duck-" + randomDirection);
+  
+    let position = 70;
+    tID = setInterval(() => {
+      if (element) {
+        element.style.backgroundPosition = `-${position}px 0px`;
+      }
+  
+      if (position < 210) {
+        position = position + 70;
+      } else {
+        position = 70;
+        const newRandomDirection = directions[Math.floor(Math.random() * directions.length)];
+        element.classList.toggle("duck-" + randomDirection);
+        element.classList.toggle("duck-" + newRandomDirection);
+      }
+    }, randomSpeed);
+  
+    element.addEventListener("click", function () {
+      clearInterval(tID);
+      element.classList.toggle("dead-duck");
+    });
+  }
+  
+
+/*   function animateDuckRight(duck) {
     const duckId = duck.idName;
     let element = document.getElementById(duckId);
 
@@ -105,11 +139,6 @@ window.onload = () => {
     });
   }
 
-  function switchDirections() {
-    if (animateDuckRightDiagonal) {
-    }
-  }
-
   function animateDuckLeftDiagonal(duck) {
     const duckId = duck.idName;
     let element = document.getElementById(duckId);
@@ -131,6 +160,11 @@ window.onload = () => {
       element.removeEventListener("animationend", arguments.callee);
       animateDuckRightDiagonal(duck);
     });
+  } */
+
+  function switchDirections() {
+    if (animateDuckRightDiagonal) {
+    }
   }
 
   const animateDeadDuck = (duck, positionX, positionY) => {
@@ -145,11 +179,9 @@ window.onload = () => {
 
     //tests of create and render ducks
     let duck1 = createDuck(35, 5);
-    let duck2 = createDuck(30, 20);
     generateDuck(duck1);
-    generateDuck(duck2);
-    animateDuckRightDiagonal(duck1);
-    animateDuckRight(duck2)
+    animateDuckRandom(duck1);
+
 
   //kill duck
   duckIds.forEach(function(duckId) {
