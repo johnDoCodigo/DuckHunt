@@ -209,8 +209,21 @@ window.onload = () => {
   }
 
   const gameOver = () => {
-    modal = document.createElement("div");
-  };
+
+    let generalContainer = document.getElementById("mainContainer")
+   
+const htmlBlock =`<div id="overlay">
+    <div id="boxwinner">
+      <div class="dogWin"></div>
+      <h3>Game over!!</h3>
+      <h5>Try again</h5>
+      <button id="newGame" class="custom-btn btn-13"  onclick="location.reload()">Start New Game</button>
+    </div>
+  </div>`
+
+
+  generalContainer.innerHTML+= htmlBlock;  
+};
 
   // utilities functions
   function getRandomInt(min, max) {

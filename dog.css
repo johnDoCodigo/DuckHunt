@@ -1,0 +1,47 @@
+.dog{
+    height: 100px;
+    width: 100px;
+    background: url('./img/dogs-walking.png');
+    position: absolute;
+    animation: moveFowardDog 6s;
+    animation-fill-mode: forwards;
+    z-index: 8;
+  }
+  .dogLaugh{
+    height: 100px;
+    width: 100px;
+    background: url('./img/dogs-dead-ducks.png');
+    position: absolute;
+    animation: dogLaughing 3000ms;
+    animation-fill-mode: both;
+    z-index: 2;
+  }
+
+  @keyframes moveFowardDog {
+    0%{
+      bottom: 15%;
+      left: 0%;
+    }
+    90%{
+      bottom: 24%;
+      left: 45%;
+    }
+    95%{
+      bottom: 24%;
+      left: 55%;
+    }
+    100%{
+      bottom: 24%;
+      left: 75%;
+    }
+  }
+    @keyframes dogLaughing{
+      0%{
+        top: 75%;
+      }
+      50%{
+        top: 60%;
+      }
+      100%{
+        top: 75%;
+      }

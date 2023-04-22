@@ -18,7 +18,7 @@
   function animateDogBeggin() {
     dog.classList.toggle("dog");
     var position = 100;
-    const interval = 200;
+    const interval = 600;
     dogAppearID = setInterval(() => {
       let dogElement = document.getElementById("dog");
       if (dogElement) {
@@ -56,4 +56,4 @@
 
   createDog(24, 2);
   animateDogBeggin();
-  let dog2 = createDogLaugh();
+ /*  let dog2 = createDogLaugh(); */
