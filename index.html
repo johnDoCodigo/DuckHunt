@@ -9,9 +9,19 @@
   </head>
   <body>
     <main class="container">
-      <div id="game" class="game">
 
+      <div id="overlay">
+        <div id="boxwinner">
+          <h3>Game over!!</h3>
+          <h5>Try again</h5>
+          <button id="newGame" class="custom-btn btn-13"  onclick="location.reload()">Start New Game</button>
+        </div>
+      </div>
+
+
+      <div id="game" class="game">
         
+
 
       </div>
 
@@ -20,22 +30,21 @@
       <div class="bottom">
         <div class="scoreBoard">
           <div class="hits">
-            <h2>Hits</h2>
-            <p class="score-points">number of hits</p>
+            <h2>Rounds</h2>
+            <p id="rounds" class="rounds">1 of 5</p>
           </div>
           <div class="shots">
             <h2>Shots</h2>
-            <p class="score-points">number of shots</p>
+            <p id="shots" class="shots">3 shots left</p>
           </div>
           <div class="score2">
             <h2>Score</h2>
-            <p class="score-points">200 points</p>
+            <p id="score-points" class="score-points">0 points</p>
           </div>
         </div>
       </div>
-    </main> 
-    <script type="text/javascript" src="./scripts/duck.js"></script> 
+    </main>
+    <script type="text/javascript" src="./scripts/duck.js"></script>
   </body>
-
 </html>
 0

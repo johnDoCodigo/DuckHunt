@@ -5,7 +5,10 @@ window.onload = () => {
   let nextDuckId = 1;
   let duckRender;
   let position = 70;
+  let scorePoints = 0;
+  let shots = 3;
   const interval = 400;
+  let currentRound = 1;
   const rounds = 5;
   const gameContainer = document.getElementById("game");
 
@@ -61,8 +64,6 @@ window.onload = () => {
         directions[Math.floor(Math.random() * directions.length)];
       element.classList.toggle("duck-" + randomDirection);
       element.classList.toggle("duck-" + newRandomDirection);
-      console.log(randomDirection);
-      console.log(newRandomDirection);
       element.removeEventListener("animationend", handleAnimationEnd);
       element.addEventListener("animationend", handleAnimationEnd);
     });
@@ -93,7 +94,6 @@ window.onload = () => {
 
     let newPositionX = getRandomInt(25, 95);
     let newPositionY = getRandomInt(25, 95);
-    console.log(duck.idName, newPositionX, newPositionY)
 
     if (newPositionX > positionX && newPositionY != positionY) {
       element.classList.add("duck-right-top");
@@ -128,61 +128,91 @@ window.onload = () => {
     duckElement.style = "";
     duckElement.classList.toggle("duck-dead");
 
-
-    tID = setInterval(() => {
-      if (duckElement) {
-        duckElement.style.backgroundPosition = `-${position}px 0px`;
-      }
-
-      if (position < 210) {
-        position = position + 70;
-      } else {
-        position = 70;
-      }
-    }, interval);
-
     duckElement.style.top = `${positionY}px`;
     duckElement.style.left = `${positionX}px`;
+
+    setTimeout(function () {
+      duckElement.remove();
+    }, 2000);
+
+    setTimeout(round, 2200);
   };
 
   //tests of create and render ducks
-  let duck1 = createDuck(35, 5);
-  //let duck2 = createDuck(20, 10);
-  generateDuck(duck1);
-  //generateDuck(duck2);
+  const round = () => {
+    let duck = createDuck(25, getRandomInt(25, 95));
+    let rendered = generateDuck(duck);
+    switchDirections(duck);
 
-  switchDirections(duck1);
-  //switchDirections(duck2);
+    rendered.addEventListener("animationend", function () {
+      clearInterval(tID);
+      switchDirections(duck);
+    });
 
-  //kill duck
-  ducks.forEach(function (duck) {
-    const duckeElement = document.getElementById(duck.idName);
+    rendered.addEventListener("click", function (e) {
+      e.stopPropagation();
+      rendered.removeEventListener("animationend", arguments.callee);
 
-    duckeElement.addEventListener("click", function () {
-      duckeElement.removeEventListener("animationend", arguments.callee);
-
-      const rect = duckeElement.getBoundingClientRect();
+      const rect = rendered.getBoundingClientRect();
       const x = rect.left + rect.width / 2;
       const y = rect.top + rect.height / 2;
 
       // Get the position of the duck
       console.log(`You clicked the duck at position (${x}, ${y})`);
 
-      //duckeElement.classList.toggle("dead-duck");
-
-      animateDeadDuck(duckeElement, x, y);
+      shots = 3;
+      document.getElementById("shots").innerHTML = `${shots} shots left`;
+      animateDeadDuck(rendered, x, y);
+      changeScore();
+      roundsCount();
     });
+  };
 
-    duckeElement.addEventListener("animationend", function () {
-      clearInterval(tID);
-      switchDirections(duck);
-      //switchDirections(duck2);
+  round();
 
-    });
-  });
+  //kill duck
+  /*   ducks.forEach(function (duck) {
+    const duckElement = document.getElementById(duck.idName);
+  }); */
+
+  function missedShot() {
+    console.log("missed shot");
+    shots--;
+    let shotsBox = document.getElementById("shots");
+    shotsBox.innerHTML = `${shots} shots left`;
+
+    if (shots == 0) {
+      gameOver();
+    }
+  }
+
+  function roundsCount() {
+    currentRound++;
+    let roundsBox = document.getElementById("rounds");
+    roundsBox.innerHTML = `${currentRound} of ${rounds}`;
+
+    if (currentRound == rounds+1) {
+      gameOver();
+      return;
+    }
+
+    
+  }
+
+  // Missed Shot
+  gameContainer.addEventListener("click", missedShot);
+
+  function changeScore() {
+    scorePoints = scorePoints + 100;
+    let scoreBox = document.getElementById("score-points");
+    scoreBox.innerHTML = `${scorePoints} points`;
+  }
+
+  const gameOver = () => {
+    modal = document.createElement("div");
+  };
 
   // utilities functions
-
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
