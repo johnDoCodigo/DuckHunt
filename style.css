@@ -124,6 +124,11 @@ body {
   z-index: 5;
 }
 
+.dogWin {
+	background: url('./img/dogs-stickers.png') no-repeat -48px -354px;
+	width: 286px;
+	height: 296px;
+}
 
 #overlay {
   display: flex;
