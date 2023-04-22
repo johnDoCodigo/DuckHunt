@@ -2,6 +2,8 @@
   let dogAppearID;
   const gameContainer = document.getElementById("game");
 
+  const barkAudio = new Audio('');
+
   function createDog(x, y) {
     dog = document.createElement("div");
     dog.id = "dog";
@@ -9,6 +11,8 @@
     dog.style.bottom = `${x}%`;
     dog.style.left = `${y}%`;
     gameContainer.append(dog);
+
+    barkAudio.play();
   }
 
   function animateDogBeggin() {
