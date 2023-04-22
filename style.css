@@ -244,18 +244,6 @@ body {
 }
 
 
-
-.testDuck{
-  height: 70px;
-  width: 70px;
-  background: url("./img/duck-right-up.png");
-  background-position: 70px 70px;
-  position: absolute;
-  transform: scaleX(-1);
-  animation: duckAnimation 2s;
-  animation-fill-mode: forwards;
-}
-
 .duckAnimation{
   animation: duckAnimation 2s;
   animation-fill-mode: forwards;
