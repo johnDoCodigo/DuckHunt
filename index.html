@@ -1,52 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Duck Hunt the Game by Tiago Silva and JP</title>
-    <link rel="stylesheet" href="style.css"/>
-</head>
-<body>
-
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <main class="container">
-        <div id="game" class="game">
 
-          <!-- <img id="board1" src="images/background.png" alt="game board"> 
-          <div id="score" class="score">0</div>
-          <img id="bullet1" src="images/bullet.png" alt="bullet">
-          <img id="bullet2" src="images/bullet.png" alt="bullet">
-          <img id="bullet3" src="images/bullet.png" alt="bullet">
-          <img id="liveDuck1" src="images/duckLive.png" alt="duck lives">
-          <img id="liveDuck2" src="images/duckLive.png" alt="duck lives">
-          <img id="liveDuck3" src="images/duckLive.png" alt="duck lives"> -->
-
+      <div id="overlay">
+        <div id="boxwinner">
+          <div class="dogWin"></div>
+          <h3>Game over!!</h3>
+          <h5>Try again</h5>
+          <button id="newGame" class="custom-btn btn-13"  onclick="location.reload()">Start New Game</button>
         </div>
-        
-       <!-- <div id = "dog" class = "dogLaugh"> </div> -->
+      </div>
 
-          <img id="board2" src="./img/back-grass-realistic.png" alt="game board">
+
+      <div id="game" class="game">
         
 
-          <div class="bottom">
-            <div class="scoreBoard"> 
-                <div class="hits">
-                  <h2>Hits</h2>
-                  <p class="score-points">number of hits</p>
-                </div>
-                <div class="shots">
-                  <h2>Shots</h2>
-                  <p class="score-points">number of shots</p>
-                </div>
-                <div class="score2">
-                  <h2>Score</h2>
-                    <p class="score-points">200 points</p>            
-                </div>
-              </div>
+
+      </div>
+
+      <img id="board2" src="./img/back-grass-realistic.png" alt="game board" />
+
+      <div class="bottom">
+        <div class="scoreBoard">
+          <div class="hits">
+            <h2>Rounds</h2>
+            <p id="rounds" class="rounds">1 of 5</p>
           </div>
+          <div class="shots">
+            <h2>Shots</h2>
+            <p id="shots" class="shots">3 shots left</p>
+          </div>
+          <div class="score2">
+            <h2>Score</h2>
+            <p id="score-points" class="score-points">0 points</p>
+          </div>
+        </div>
+      </div>
     </main>
-    
-</body>
-<script type="text/javascript" src="./scripts/dog.js"></script>
-<script type="text/javascript" src="./scripts/duck.js"></script>
+    <script type="text/javascript" src="./scripts/duck.js"></script>
+  </body>
 </html>
+0
