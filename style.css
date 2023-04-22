@@ -10,6 +10,7 @@ body {
   overflow: hidden;
   z-index: -1;
   cursor: url("./img/cursor.cur"), auto;
+  font-family: "Raleway", sans-serif;
 }
 
 .container {
@@ -24,16 +25,7 @@ body {
   position: relative;
   width: 100%;
   height: 100%;
-}
-
-#board1 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 2;
+  z-index: 3;
 }
 
 #board2 {
@@ -43,70 +35,6 @@ body {
   height: 25%;
   object-fit: cover;
   z-index: 4;
-}
-
-.score {
-  position: absolute;
-  top: 20px;
-  left: 90%;
-  font-size: 40px;
-  font-family: "Lato-Bold", Arial, Helvetica, sans-serif;
-  color: green;
-  z-index: 2;
-}
-
-#bullet1 {
-  position: absolute;
-  left: 5%;
-  top: 5%;
-  width: 40px;
-  height: 40px;
-  z-index: 8;
-}
-
-#bullet2 {
-  position: absolute;
-  left: 7%;
-  top: 5%;
-  width: 40px;
-  height: 40px;
-  z-index: 8;
-}
-
-#bullet3 {
-  position: absolute;
-  left: 9%;
-  top: 5%;
-  width: 40px;
-  height: 40px;
-  z-index: 8;
-}
-
-#liveDuck1 {
-  position: absolute;
-  bottom: 5%;
-  left: 8%;
-  width: 40px;
-  height: 40px;
-  z-index: 8;
-}
-
-#liveDuck2 {
-  position: absolute;
-  bottom: 5%;
-  left: 12%;
-  width: 40px;
-  height: 40px;
-  z-index: 8;
-}
-
-#liveDuck3 {
-  position: absolute;
-  bottom: 5%;
-  left: 16%;
-  width: 40px;
-  height: 40px;
-  z-index: 8;
 }
 
 .bottom {
@@ -149,8 +77,8 @@ body {
   background: url("./img/duck-right.png");
   background-position: 70px 70px;
   position: absolute;
-  animation: moveRightHorizontal 8s;
-  animation-fill-mode: forwards;
+  z-index: 5;
+
 }
 
 .duck-left {
@@ -160,8 +88,8 @@ body {
   background-position: 70px 70px;
   transform: scaleX(-1);
   position: absolute;
-  animation: moveLeftHorizontal 8s;
-  animation-fill-mode: forwards;
+  z-index: 5;
+
 }
 
 .duck-right-top {
@@ -170,8 +98,8 @@ body {
   background: url("./img/duck-right-up.png");
   background-position: 70px 70px;
   position: absolute;
-  animation: moveRightDiagonal 6s;
-  animation-fill-mode: forwards;
+  z-index: 5;
+
 }
 
 .duck-left-top {
@@ -181,8 +109,8 @@ body {
   background-position: 70px 70px;
   position: absolute;
   transform: scaleX(-1);
-  animation: moveLeftDiagonal 6s;
-  animation-fill-mode: forwards;
+  z-index: 5;
+  
 }
 
 .duck-dead {
@@ -191,18 +119,113 @@ body {
   background: url("./img/dead-duck.png");
   background-position: 0px 0px;
   position: absolute;
+  animation: fallingDuck 4s;
+  animation-fill-mode: forwards;
+  z-index: 5;
 }
 
-#animated-div {
-  position: absolute;
+.dogWin {
+	background: url('./img/dogs-stickers.png') no-repeat -48px -354px;
+	width: 286px;
+	height: 296px;
+}
+
+#overlay {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
   top: 0;
+  bottom: 0;
+  width: 100vw;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,0.50);
+  z-index: 11;
+}
+
+#boxwinner {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: auto;
+  height: auto;
+  padding: 15px;
+  background-color: #fefefe;
+  border-radius: 10px;
+  z-index: 20;
+}
+
+.custom-btn {
+  width:auto;
+  height: 60px;
+  color: #fff;
+  font-size: 16pt;
+  border-radius: 5px;
+  padding: 10px 40px;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;
+}
+
+/* 13 */
+.btn-13 {
+  background-color: #89d8d3;
+background-image: linear-gradient(315deg, #89d8d3 0%, #03c8a8 74%);
+  border: none;
+  z-index: 1;
+}
+.btn-13:after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 0;
+  bottom: 0;
   left: 0;
-  width: 50px;
-  height: 50px;
-  background-color: red;
+  z-index: -1;
+  border-radius: 5px;
+   background-color: #4dccc6;
+background-image: linear-gradient(315deg, #4dccc6 0%, #96e4df 74%);
+  box-shadow:
+   -7px -7px 20px 0px #fff9,
+   -4px -4px 5px 0px #fff9,
+   7px 7px 20px 0px #0002,
+   4px 4px 5px 0px #0001;
+  transition: all 0.3s ease;
+}
+.btn-13:hover {
+  color: #fff;
+}
+.btn-13:hover:after {
+  top: 0;
+  height: 100%;
+}
+.btn-13:active {
+  top: 2px;
 }
 
 /* Ducks movements */
+
+@keyframes fallingDuck {
+
+  0% {
+    opacity: 100%
+  }
+  100% {
+    opacity: 0%
+  }
+  
+}
 
 @keyframes moveRightHorizontal {
   0% {
@@ -246,4 +269,31 @@ body {
     bottom: 30%;
     left: 0%;
   }
+}
+
+:root {
+  --inicialX: 30%;
+  --inicialY: 0%;
+  --finalX:30%;
+  --finalY:95%;
+}
+
+
+.duckAnimation{
+  animation: duckAnimation 2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes duckAnimation {
+
+  0% {
+    bottom: var(--inicialY);
+    left: var(--inicialX);
+  }
+  100% {
+    bottom: var(--finalY);
+    left: var(--finalX);
+  }
+
+  
 }

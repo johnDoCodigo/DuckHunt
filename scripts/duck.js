@@ -5,7 +5,10 @@ window.onload = () => {
   let nextDuckId = 1;
   let duckRender;
   let position = 70;
-  const interval = 200;
+  let scorePoints = 0;
+  let shots = 3;
+  const interval = 400;
+  let currentRound = 1;
   const rounds = 5;
   const gameContainer = document.getElementById("game");
 
@@ -19,6 +22,7 @@ window.onload = () => {
     nextDuckId++;
     ducks.push(duck);
     duckIds.push(duck.idName);
+
     return duck;
   };
 
@@ -36,169 +40,180 @@ window.onload = () => {
   function animateDuckRandom(duck) {
     const duckId = duck.idName;
     let element = document.getElementById(duckId);
-  
+
     const directions = ["right", "left", "right-top", "left-top"];
-    const speeds = [200, 300, 400, 500];
-    const randomDirection = directions[Math.floor(Math.random() * directions.length)];
-    const randomSpeed = speeds[Math.floor(Math.random() * speeds.length)];
-  
+    const randomDirection =
+      directions[Math.floor(Math.random() * directions.length)];
+
     element.classList.toggle("duck-" + randomDirection);
-  
-    let position = 70;
+
     tID = setInterval(() => {
       if (element) {
         element.style.backgroundPosition = `-${position}px 0px`;
       }
-  
+
       if (position < 210) {
         position = position + 70;
       } else {
         position = 70;
-        const newRandomDirection = directions[Math.floor(Math.random() * directions.length)];
-        element.classList.toggle("duck-" + randomDirection);
-        element.classList.toggle("duck-" + newRandomDirection);
       }
-    }, randomSpeed);
-  
-    element.addEventListener("click", function () {
+    }, interval);
+
+    element.addEventListener("animationend", function handleAnimationEnd() {
+      const newRandomDirection =
+        directions[Math.floor(Math.random() * directions.length)];
+      element.classList.toggle("duck-" + randomDirection);
+      element.classList.toggle("duck-" + newRandomDirection);
+      element.removeEventListener("animationend", handleAnimationEnd);
+      element.addEventListener("animationend", handleAnimationEnd);
+    });
+  }
+
+  const switchDirections = (duck) => {
+    tID = setInterval(() => {
+      if (element) {
+        element.style.backgroundPosition = `-${position}px 0px`;
+      }
+
+      if (position < 210) {
+        position = position + 70;
+      } else {
+        position = 70;
+      }
+    }, interval);
+
+    root = document.documentElement;
+
+    let positionX = duck.positionX;
+    let positionY = duck.positionY;
+
+    const duckId = duck.idName;
+    let element = document.getElementById(duckId);
+
+    element.classList.remove("duckAnimation");
+
+    let newPositionX = getRandomInt(25, 95);
+    let newPositionY = getRandomInt(25, 95);
+
+    if (newPositionX > positionX && newPositionY != positionY) {
+      element.classList.add("duck-right-top");
+    } else if (newPositionX < positionX && newPositionY != positionY) {
+      element.classList.add("duck-left-top");
+    } else if (newPositionX == positionX && newPositionY > positionY) {
+      element.classList.add("right");
+    } else if (newPositionX == positionX && newPositionY < positionY) {
+      element.classList.add("left");
+    }
+    /*     else {
+      newPositionX = getRandomInt(25,100);
+      newPositionY = getRandomInt(25,100);
+    } */
+
+    root.style.setProperty("--inicialX", positionX + "%");
+    root.style.setProperty("--inicialY", positionY + "%");
+
+    root.style.setProperty("--finalX", newPositionX + "%");
+    root.style.setProperty("--finalY", newPositionY + "%");
+
+    duck.positionX = newPositionX;
+    duck.positionY = newPositionY;
+
+    void element.offsetWidth; // restart da ANIMATION!!!!
+    element.classList.add("duckAnimation");
+  };
+
+  const animateDeadDuck = (duckElement, positionX, positionY) => {
+    clearInterval(tID);
+    duckElement.className = "";
+    duckElement.style = "";
+    duckElement.classList.toggle("duck-dead");
+
+    duckElement.style.top = `${positionY}px`;
+    duckElement.style.left = `${positionX}px`;
+
+    setTimeout(function () {
+      duckElement.remove();
+    }, 2000);
+
+    setTimeout(round, 2200);
+  };
+
+  //tests of create and render ducks
+  const round = () => {
+    let duck = createDuck(25, getRandomInt(25, 95));
+    let rendered = generateDuck(duck);
+    switchDirections(duck);
+
+    rendered.addEventListener("animationend", function () {
       clearInterval(tID);
-      element.classList.toggle("dead-duck");
+      switchDirections(duck);
     });
-  }
-  
 
-/*   function animateDuckRight(duck) {
-    const duckId = duck.idName;
-    let element = document.getElementById(duckId);
+    rendered.addEventListener("click", function (e) {
+      e.stopPropagation();
+      rendered.removeEventListener("animationend", arguments.callee);
 
-    element.classList.toggle("duck-right");
-    tID = setInterval(() => {
-      
-      if (element) {
-        element.style.backgroundPosition = `-${position}px 0px`;
-      }
+      const rect = rendered.getBoundingClientRect();
+      const x = rect.left + rect.width / 2;
+      const y = rect.top + rect.height / 2;
 
-      if (position < 210) {
-        position = position + 70;
-      } else {
-        position = 70;
-      }
-    }, interval);
+      // Get the position of the duck
+      console.log(`You clicked the duck at position (${x}, ${y})`);
 
-    element.addEventListener("animationend", function () {
-      element.classList.toggle("duck-right");
-      element .removeEventListener("animationend", arguments.callee);
-      animateDuckLeft(duck);
+      shots = 3;
+      document.getElementById("shots").innerHTML = `${shots} shots left`;
+      animateDeadDuck(rendered, x, y);
+      changeScore();
+      roundsCount();
     });
-  }
+  };
 
-  function animateDuckLeft(duck) {
-    const duckId = duck.idName;
-    let element = document.getElementById(duckId);
-    element.classList.toggle("duck-left");
-    tID = setInterval(() => {
-      if (element) {
-        element.style.backgroundPosition = `-${position}px 0px`;
-      }
+  round();
 
-      if (position < 210) {
-        position = position + 70;
-      } else {
-        position = 70;
-      }
-    }, interval);
+  //kill duck
+  /*   ducks.forEach(function (duck) {
+    const duckElement = document.getElementById(duck.idName);
+  }); */
 
-    element.addEventListener("animationend", function () {
-      element.classList.toggle("duck-left");
-      element.removeEventListener("animationend", arguments.callee);
-      animateDuckRight(duck);
-    });
-  }
+  function missedShot() {
+    console.log("missed shot");
+    shots--;
+    let shotsBox = document.getElementById("shots");
+    shotsBox.innerHTML = `${shots} shots left`;
 
-  function animateDuckRightDiagonal(duck) {
-    const duckId = duck.idName;
-    let element = document.getElementById(duckId);
-    element.classList.toggle("duck-right-top");
-
-    tID = setInterval(() => {
-      if (element) {
-        element.style.backgroundPosition = `-${position}px 0px`;
-      }
-
-      if (position < 210) {
-        position = position + 70;
-      } else {
-        position = 70;
-      }
-    }, interval);
-
-    element.addEventListener("animationend", function () {
-      element.classList.toggle("duck-right-top");
-      element.removeEventListener("animationend", arguments.callee);
-      animateDuckLeftDiagonal(duck);
-    });
-  }
-
-  function animateDuckLeftDiagonal(duck) {
-    const duckId = duck.idName;
-    let element = document.getElementById(duckId);
-    element.classList.toggle("duck-left-top");
-    tID = setInterval(() => {
-      if (element) {
-        element.style.backgroundPosition = `-${position}px 0px`;
-      }
-
-      if (position < 210) {
-        position = position + 70;
-      } else {
-        position = 70;
-      }
-    }, interval);
-
-    element.addEventListener("animationend", function () {
-      element.classList.toggle("duck-left-top");
-      element.removeEventListener("animationend", arguments.callee);
-      animateDuckRightDiagonal(duck);
-    });
-  } */
-
-  function switchDirections() {
-    if (animateDuckRightDiagonal) {
+    if (shots == 0) {
+      gameOver();
     }
   }
 
-  const animateDeadDuck = (duck, positionX, positionY) => {
-    clearInterval(tID);
-    duck.className = "";
-    duck.style = "";
-    duck.classList.toggle("duck-dead");
+  function roundsCount() {
+    currentRound++;
+    let roundsBox = document.getElementById("rounds");
+    roundsBox.innerHTML = `${currentRound} of ${rounds}`;
 
-    duck.style.top = `${positionY}px`;
-    duck.style.left = `${positionX}px`;
+    if (currentRound == rounds+1) {
+      gameOver();
+      return;
+    }
+
+    
+  }
+
+  // Missed Shot
+  gameContainer.addEventListener("click", missedShot);
+
+  function changeScore() {
+    scorePoints = scorePoints + 100;
+    let scoreBox = document.getElementById("score-points");
+    scoreBox.innerHTML = `${scorePoints} points`;
+  }
+
+  const gameOver = () => {
+    modal = document.createElement("div");
   };
 
-    //tests of create and render ducks
-    let duck1 = createDuck(35, 5);
-    generateDuck(duck1);
-    animateDuckRandom(duck1);
-
-
-  //kill duck
-  duckIds.forEach(function(duckId) {
-    const duck = document.getElementById(duckId);
-    duck.addEventListener("click", function () {
-      duck.removeEventListener("animationend", arguments.callee);
-  
-      const rect = duck.getBoundingClientRect();
-      const x = rect.left + rect.width / 2;
-      const y = rect.top + rect.height / 2;
-  
-      // Get the position of the duck
-      console.log(`You clicked the duck at position (${x}, ${y})`);
-  
-      animateDeadDuck(duck, x, y);
-    });
-  });
-
-
+  // utilities functions
+  function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
 };
