@@ -149,8 +149,7 @@ body {
   background: url("./img/duck-right.png");
   background-position: 70px 70px;
   position: absolute;
-  animation: moveRightHorizontal 2s;
-  animation-fill-mode: forwards;
+
 }
 
 .duck-left {
@@ -160,8 +159,7 @@ body {
   background-position: 70px 70px;
   transform: scaleX(-1);
   position: absolute;
-  animation: moveLeftHorizontal 2s;
-  animation-fill-mode: forwards;
+
 }
 
 .duck-right-top {
@@ -170,8 +168,7 @@ body {
   background: url("./img/duck-right-up.png");
   background-position: 70px 70px;
   position: absolute;
-  animation: moveRightDiagonal 2s;
-  animation-fill-mode: forwards;
+
 }
 
 .duck-left-top {
@@ -181,8 +178,8 @@ body {
   background-position: 70px 70px;
   position: absolute;
   transform: scaleX(-1);
-  animation: moveLeftDiagonal 2s;
-  animation-fill-mode: forwards;
+
+  
 }
 
 .duck-dead {
@@ -237,4 +234,43 @@ body {
     bottom: 30%;
     left: 0%;
   }
+}
+
+:root {
+  --inicialX: 30%;
+  --inicialY: 0%;
+  --finalX:30%;
+  --finalY:95%;
+}
+
+
+
+.testDuck{
+  height: 70px;
+  width: 70px;
+  background: url("./img/duck-right-up.png");
+  background-position: 70px 70px;
+  position: absolute;
+  transform: scaleX(-1);
+  animation: duckAnimation 2s;
+  animation-fill-mode: forwards;
+}
+
+.duckAnimation{
+  animation: duckAnimation 2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes duckAnimation {
+
+  0% {
+    bottom: var(--inicialY);
+    left: var(--inicialX);
+  }
+  100% {
+    bottom: var(--finalY);
+    left: var(--finalX);
+  }
+
+  
 }
