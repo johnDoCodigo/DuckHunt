@@ -164,6 +164,12 @@ window.onload = () => {
 
   //start Game
   startGame();
+  const roundOnSound = new Audio('sounds/roundOne.mp3');
+  roundOnSound.play();
+
+  const shotsDuckSond = new Audio('sounds/duckQuack.mp3');
+  shotsDuckSond.play();
+
 
   //kill duck
   function missedShot() {
