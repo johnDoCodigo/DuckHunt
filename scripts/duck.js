@@ -152,8 +152,11 @@ window.onload = () => {
       roundsCount();
       shotsOnTarget++;
 
-      const shotsound = new Audio('sounds/shots.mp3');
-      shotsound.play();
+      const shotSound = new Audio('sounds/shots.mp3');
+      shotSound.play();
+
+      const shotsDuckSond = new Audio('sounds/duckQuack.mp3');
+      shotsDuckSond.play();
 
     });
   };
@@ -167,6 +170,9 @@ window.onload = () => {
     console.log("missed shot");
     shots--;
     missedShotsCount++;
+
+    const shotSound = new Audio('sounds/shots.mp3');
+    shotSound.play();
 
     const laugh = new Audio('sounds/laugh.mp3');
     laugh.play();
@@ -188,7 +194,7 @@ window.onload = () => {
     roundsBox.innerHTML = `${currentRound} of ${rounds}`;
 
     if (currentRound == rounds+1) {
-      gameWin();
+    gameWin();
       
     const winningSound = new Audio('sounds/winning.mp3');
     winningSound.play();
