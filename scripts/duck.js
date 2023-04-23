@@ -22,8 +22,6 @@ window.onload = () => {
 
   setTimeout(function() {
 
- 
-
   const createDuck = (positionX, positionY) => {
     let duck = {
       idName: "duck" + nextDuckId,
@@ -114,11 +112,12 @@ window.onload = () => {
       duckElement.remove();
     }, 2000);
 
-    setTimeout(round, 2200);
+    setTimeout(startGame, 2200);
   };
 
-  //tests of create and render ducks
-  const round = () => {
+
+
+  const startGame = () => {
     let duck = createDuck(25, getRandomInt(25, 95));
     let rendered = generateDuck(duck);
     switchDirections(duck);
@@ -150,7 +149,7 @@ window.onload = () => {
 
 
   //start Game
-  round();
+  startGame();
 
   //kill duck
   function missedShot() {
@@ -178,7 +177,7 @@ window.onload = () => {
     
   }
 
-  // Missed Shot
+  // Missed Shot - Always Listening for click of Missing Shot
   gameContainer.addEventListener("click", missedShot);
 
   function changeScore() {
