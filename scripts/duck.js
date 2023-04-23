@@ -151,6 +151,10 @@ window.onload = () => {
       changeScore();
       roundsCount();
       shotsOnTarget++;
+
+      const shotsound = new Audio('sounds/shots.mp3');
+      shotsound.play();
+
     });
   };
 
@@ -163,11 +167,18 @@ window.onload = () => {
     console.log("missed shot");
     shots--;
     missedShotsCount++;
+
+    const laugh = new Audio('sounds/laugh.mp3');
+    laugh.play();
+
     let shotsBox = document.getElementById("shots");
     shotsBox.innerHTML = `${shots} shots left`;
 
     if (shots == 0) {
       gameOver();
+
+    const gameOverSound = new Audio('sounds/gameOver.mp3');
+    gameOverSound.play();
     }
   }
 
@@ -178,10 +189,12 @@ window.onload = () => {
 
     if (currentRound == rounds+1) {
       gameWin();
-      return;
+      
+    const winningSound = new Audio('sounds/winning.mp3');
+    winningSound.play();
+    return;
     }
 
-    
   }
 
   // Missed Shot - Always Listening for click of Missing Shot
