@@ -49,6 +49,9 @@ function animateDogBeggin() {
     gameContainer.append(dog2);
     const interval = 800;
 
+    const laugh = new Audio('sounds/DogLaugh.mp3');
+    laugh.play();
+
     dog2.style.bottom = `${x}%`;
     dog2.style.left = `${y}%`;
     
@@ -59,4 +62,4 @@ function animateDogBeggin() {
    }
 
 
- /*  let dog2 = createDogLaugh(); */
+  let dog2 = createDogLaugh();
