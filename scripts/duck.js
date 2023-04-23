@@ -46,18 +46,28 @@ window.onload = () => {
     gameContainer.append(duckRender);
     return duckRender;
   };
-  const switchDirections = (duck) => {
-    tID = setInterval(() => {
-      if (element) {
-        element.style.backgroundPosition = `-${position}px 0px`;
-      }
 
-      if (position < 210) {
-        position = position + 70;
-      } else {
-        position = 70;
-      }
-    }, interval);
+    //Animate default Sprite
+    const animateSprite = (duck) => {
+      let position = 0;
+      const interval = 200;
+    
+      return setInterval(() => {
+        if (duck.element) {
+          duck.element.style.backgroundPosition = `-${position}px 0px`;
+        }
+    
+        if (position < 210) {
+          position = position + 70;
+        } else {
+          position = 70;
+        }
+      }, interval);
+    };
+  const switchDirections = (duck) => {
+    
+    
+    const tID = animateSprite(duck);
 
     root = document.documentElement;
 
@@ -81,10 +91,6 @@ window.onload = () => {
     } else if (newPositionX == positionX && newPositionY < positionY) {
       element.classList.add("left");
     }
-    /*     else {
-      newPositionX = getRandomInt(25,100);
-      newPositionY = getRandomInt(25,100);
-    } */
 
     root.style.setProperty("--inicialX", positionX + "%");
     root.style.setProperty("--inicialY", positionY + "%");
@@ -95,7 +101,7 @@ window.onload = () => {
     duck.positionX = newPositionX;
     duck.positionY = newPositionY;
 
-    void element.offsetWidth; // restart da ANIMATION!!!!
+    void element.offsetWidth; // restart the ANIMATION!!!!
     element.classList.add("duckAnimation");
   };
 
@@ -236,6 +242,8 @@ accuracyDiv.innerHTML = `${accuracy} % Accuracy`;
 };
 
   // utilities functions
+
+  //generate random Int Number
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
