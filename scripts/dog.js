@@ -17,6 +17,12 @@ function animateDogBeggin() {
     dog.classList.toggle("dog");
     var position = 100;
     const interval = 600;
+
+    const audio = new Audio('sounds/dogbark.mp3');
+    audio.play();
+
+
+
     dogAppearID = setInterval(() => {
       let dogElement = document.getElementById("dog");
       if (dogElement) {
