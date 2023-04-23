@@ -2,9 +2,8 @@
   let dogAppearID;
   const gameContainer = document.getElementById("game");
 
-  const barkAudio = new Audio('');
 
-  function createDog(x, y) {
+function createDog(x, y) {
     dog = document.createElement("div");
     dog.id = "dog";
 
@@ -12,10 +11,9 @@
     dog.style.left = `${y}%`;
     gameContainer.append(dog);
 
-    barkAudio.play();
   }
 
-  function animateDogBeggin() {
+function animateDogBeggin() {
     dog.classList.toggle("dog");
     var position = 100;
     const interval = 600;
@@ -54,6 +52,5 @@
     dog2.addEventListener("animationend", removeDog);
    }
 
-  createDog(24, 2);
-  animateDogBeggin();
+
  /*  let dog2 = createDogLaugh(); */
