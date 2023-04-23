@@ -17,6 +17,19 @@
   z-index: 2;
 }
 
+
+.dogWin {
+	background: url('./img/dogs-stickers.png') no-repeat -48px -354px;
+	width: 286px;
+	height: 296px;
+}
+
+.dogLost {
+	background: url('./img/dogs-stickers.png') no-repeat -720px -359px;
+	width: 302px;
+	height: 287px;
+}
+
 @keyframes moveFowardDog {
   0% {
     bottom: 15%;

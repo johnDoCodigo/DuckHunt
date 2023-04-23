@@ -10,7 +10,18 @@ window.onload = () => {
   const interval = 400;
   let currentRound = 1;
   const rounds = 5;
+
+  let missedShotsCount = 0;
+  let shotsOnTarget = 0;
+
   const gameContainer = document.getElementById("game");
+
+  //starts the dog first
+  createDog(24, 2);
+  animateDogBeggin();
+
+  //run code only after the dog animation
+  setTimeout(function() {
 
   const createDuck = (positionX, positionY) => {
     let duck = {
@@ -37,50 +48,27 @@ window.onload = () => {
     return duckRender;
   };
 
-  function animateDuckRandom(duck) {
-    const duckId = duck.idName;
-    let element = document.getElementById(duckId);
-
-    const directions = ["right", "left", "right-top", "left-top"];
-    const randomDirection =
-      directions[Math.floor(Math.random() * directions.length)];
-
-    element.classList.toggle("duck-" + randomDirection);
-
-    tID = setInterval(() => {
-      if (element) {
-        element.style.backgroundPosition = `-${position}px 0px`;
-      }
-
-      if (position < 210) {
-        position = position + 70;
-      } else {
-        position = 70;
-      }
-    }, interval);
-
-    element.addEventListener("animationend", function handleAnimationEnd() {
-      const newRandomDirection =
-        directions[Math.floor(Math.random() * directions.length)];
-      element.classList.toggle("duck-" + randomDirection);
-      element.classList.toggle("duck-" + newRandomDirection);
-      element.removeEventListener("animationend", handleAnimationEnd);
-      element.addEventListener("animationend", handleAnimationEnd);
-    });
-  }
-
+    //Animate default Sprite
+    const animateSprite = (duck) => {
+      let position = 0;
+      const interval = 200;
+    
+      return setInterval(() => {
+        if (duck.element) {
+          duck.element.style.backgroundPosition = `-${position}px 0px`;
+        }
+    
+        if (position < 210) {
+          position = position + 70;
+        } else {
+          position = 70;
+        }
+      }, interval);
+    };
   const switchDirections = (duck) => {
-    tID = setInterval(() => {
-      if (element) {
-        element.style.backgroundPosition = `-${position}px 0px`;
-      }
-
-      if (position < 210) {
-        position = position + 70;
-      } else {
-        position = 70;
-      }
-    }, interval);
+    
+    
+    const tID = animateSprite(duck);
 
     root = document.documentElement;
 
@@ -104,10 +92,6 @@ window.onload = () => {
     } else if (newPositionX == positionX && newPositionY < positionY) {
       element.classList.add("left");
     }
-    /*     else {
-      newPositionX = getRandomInt(25,100);
-      newPositionY = getRandomInt(25,100);
-    } */
 
     root.style.setProperty("--inicialX", positionX + "%");
     root.style.setProperty("--inicialY", positionY + "%");
@@ -118,7 +102,7 @@ window.onload = () => {
     duck.positionX = newPositionX;
     duck.positionY = newPositionY;
 
-    void element.offsetWidth; // restart da ANIMATION!!!!
+    void element.offsetWidth; // restart the ANIMATION!!!!
     element.classList.add("duckAnimation");
   };
 
@@ -135,11 +119,12 @@ window.onload = () => {
       duckElement.remove();
     }, 2000);
 
-    setTimeout(round, 2200);
+    setTimeout(startGame, 2200);
   };
 
-  //tests of create and render ducks
-  const round = () => {
+
+
+  const startGame = () => {
     let duck = createDuck(25, getRandomInt(25, 95));
     let rendered = generateDuck(duck);
     switchDirections(duck);
@@ -165,19 +150,19 @@ window.onload = () => {
       animateDeadDuck(rendered, x, y);
       changeScore();
       roundsCount();
+      shotsOnTarget++;
     });
   };
 
-  round();
+
+  //start Game
+  startGame();
 
   //kill duck
-  /*   ducks.forEach(function (duck) {
-    const duckElement = document.getElementById(duck.idName);
-  }); */
-
   function missedShot() {
     console.log("missed shot");
     shots--;
+    missedShotsCount++;
     let shotsBox = document.getElementById("shots");
     shotsBox.innerHTML = `${shots} shots left`;
 
@@ -192,14 +177,14 @@ window.onload = () => {
     roundsBox.innerHTML = `${currentRound} of ${rounds}`;
 
     if (currentRound == rounds+1) {
-      gameOver();
+      gameWin();
       return;
     }
 
     
   }
 
-  // Missed Shot
+  // Missed Shot - Always Listening for click of Missing Shot
   gameContainer.addEventListener("click", missedShot);
 
   function changeScore() {
@@ -211,22 +196,58 @@ window.onload = () => {
   const gameOver = () => {
 
     let generalContainer = document.getElementById("mainContainer")
+
+    let accuracy = Math.round((shotsOnTarget/ (missedShotsCount+shotsOnTarget))*100);
+    
    
 const htmlBlock =`<div id="overlay">
     <div id="boxwinner">
-      <div class="dogWin"></div>
-      <h3>Game over!!</h3>
-      <h5>Try again</h5>
+      <div class="dogLost"></div>
+      <h2>Game over!!</h3>
+      <h4 id="accuracy"></h4>
       <button id="newGame" class="custom-btn btn-13"  onclick="location.reload()">Start New Game</button>
     </div>
   </div>`
 
 
   generalContainer.innerHTML+= htmlBlock;  
+
+  let accuracyDiv = document.getElementById("accuracy");
+  accuracyDiv.innerHTML = `${accuracy} % Accuracy`;
+
+};
+
+
+const gameWin = () => {
+
+  let generalContainer = document.getElementById("mainContainer")
+
+  let accuracy = Math.round((shotsOnTarget/ (missedShotsCount+shotsOnTarget))*100);
+  
+ 
+const htmlBlock =`<div id="overlay">
+  <div id="boxwinner">
+    <div class="dogWin"></div>
+    <h2>YOU Win!!</h3>
+    <h4 id="accuracy"></h4>
+    <button id="newGame" class="custom-btn btn-13"  onclick="location.reload()">Start New Game</button>
+  </div>
+</div>`
+
+
+generalContainer.innerHTML+= htmlBlock;  
+
+let accuracyDiv = document.getElementById("accuracy");
+accuracyDiv.innerHTML = `${accuracy} % Accuracy`;
+
 };
 
   // utilities functions
+
+  //generate random Int Number
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
+
+}, 6000);
 };
