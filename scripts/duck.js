@@ -20,6 +20,7 @@ window.onload = () => {
   createDog(24, 2);
   animateDogBeggin();
 
+  //run code only after the dog animation
   setTimeout(function() {
 
   const createDuck = (positionX, positionY) => {
