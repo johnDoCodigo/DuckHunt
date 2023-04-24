@@ -53,9 +53,9 @@ window.onload = () => {
       let position = 0;
       const interval = 200;
     
-      return setInterval(() => {
-        if (duck.element) {
-          duck.element.style.backgroundPosition = `-${position}px 0px`;
+      setInterval(() => {
+        if (duck) {
+          duck.style.backgroundPosition = `-${position}px 0px`;
         }
     
         if (position < 210) {
@@ -67,9 +67,6 @@ window.onload = () => {
     };
   const switchDirections = (duck) => {
     
-    
-    const tID = animateSprite(duck);
-
     root = document.documentElement;
 
     let positionX = duck.positionX;
@@ -77,6 +74,7 @@ window.onload = () => {
 
     const duckId = duck.idName;
     let element = document.getElementById(duckId);
+    animateSprite(element);
 
     element.classList.remove("duckAnimation");
 
