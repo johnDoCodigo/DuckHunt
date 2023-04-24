@@ -35,17 +35,24 @@
     bottom: 15%;
     left: 0%;
   }
-  90% {
-    bottom: 24%;
+
+  60% {
+    bottom: 15%;
     left: 45%;
   }
-  95% {
-    bottom: 24%;
+
+  70% {
+    bottom: 20%;
     left: 55%;
   }
+
+  90% {
+    bottom: 30%;
+    left: 60%;
+  }
   100% {
-    bottom: 24%;
-    left: 75%;
+    bottom: 30%;
+    left: 65%;
   }
 }
 @keyframes dogLaughing {
